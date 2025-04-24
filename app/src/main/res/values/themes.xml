@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.QuickNote" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:windowBackground">@color/lightcream</item>
+        <item name="backgroundColor">@color/lightcream</item>
+
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryVariant">@color/light</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/cold</item>
+        <item name="colorSecondaryVariant">@color/light</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+
+        <item name="colorSurfaceContainerHigh">@color/cream</item>
+    </style>
+
+    <style name="Theme.QuickNote" parent="Base.Theme.QuickNote" />
+</resources>
