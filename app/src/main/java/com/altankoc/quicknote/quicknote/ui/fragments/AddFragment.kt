@@ -14,6 +14,7 @@ import com.altankoc.quicknote.quicknote.data.model.Note
 import com.altankoc.quicknote.quicknote.repository.NoteRepository
 import com.altankoc.quicknote.quicknote.viewmodel.NoteViewModel
 import androidx.navigation.findNavController
+import com.altankoc.quicknote.quicknote.viewmodel.NoteViewModelFactory
 
 
 class AddFragment : Fragment() {
@@ -40,11 +41,8 @@ class AddFragment : Fragment() {
         // ViewModel başlatılıyor
         val noteDao = NoteDatabase.getDatabase(requireContext()).noteDao()
         val repository = NoteRepository(noteDao)
-        noteViewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
-                return NoteViewModel(repository) as T
-            }
-        })[NoteViewModel::class.java]
+        val factory = NoteViewModelFactory(repository)
+        noteViewModel = ViewModelProvider(this, factory)[NoteViewModel::class.java]
 
 
         return view

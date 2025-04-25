@@ -13,6 +13,7 @@ import com.altankoc.quicknote.quicknote.adapter.NoteAdapter
 import com.altankoc.quicknote.quicknote.data.db.NoteDatabase
 import com.altankoc.quicknote.quicknote.repository.NoteRepository
 import com.altankoc.quicknote.quicknote.viewmodel.NoteViewModel
+import com.altankoc.quicknote.quicknote.viewmodel.NoteViewModelFactory
 
 @Suppress("UNCHECKED_CAST")
 class ListFragment : Fragment() {
@@ -30,11 +31,8 @@ class ListFragment : Fragment() {
 
         val dao = NoteDatabase.getDatabase(requireContext()).noteDao()
         val repository = NoteRepository(dao)
-        noteViewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
-                return NoteViewModel(repository) as T
-            }
-        })[NoteViewModel::class.java]
+        val factory = NoteViewModelFactory(repository)
+        noteViewModel = ViewModelProvider(this, factory)[NoteViewModel::class.java]
 
         _binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
